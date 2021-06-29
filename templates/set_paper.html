@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+table, th, td {
+  border: 1px solid black;
+}
+table.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+</head>
+<body>
+<a href="login_successfull">Home</a>
+<center>
+        <table>
+        <tr>
+            <th>Sr no</th>
+            <th>Question</th>
+            <th>Option A</th>
+            <th>Option B</th>
+            <th>Option C</th>
+            <th>Option D</th>
+            <th>Answer</th>
+        </tr>
+            {% for row in rows %}
+             <tr>
+                 <form action="/edit_paper" method="POST">
+                     <input type="hidden" name="name" value="{{name}}">
+                     <td><input type="text" name="sr_no" value="{{ row['sr_no'] }}" readonly></td>
+                     <td><textarea name="question" rows="5" cols="50">{{ row['question'] }}</textarea></td>
+                     <td><textarea name="a" rows="5" cols="50">{{ row['A'] }}</textarea></td>
+                     <td><textarea name="b" rows="5" cols="50">{{ row['B'] }}</textarea></td>
+                     <td><textarea name="c" rows="5" cols="50">{{ row['C'] }}</textarea></td>
+                     <td><textarea name="d" rows="5" cols="50">{{ row['D'] }}</textarea></td>
+                     <td><input type="text" name="ans" value="{{ row['Ans'] }}"></td>
+                    <td><input type="submit" name="edit" value="Edit"></td>
+                 </form>
+            </tr>
+            {% endfor %}
+            <tr>
+                <form action="/add_question" method="POST">
+                    <input type="hidden" name="name" value="{{name}}">
+                     <td><input type="text" name="sr_no"></td>
+                    <td><textarea name="question" rows="5" cols="50"></textarea></td>
+                     <td><textarea name="a" rows="5" cols="50"></textarea></td>
+                     <td><textarea name="b" rows="5" cols="50"></textarea></td>
+                     <td><textarea name="c" rows="5" cols="50"></textarea></td>
+                     <td><textarea name="d" rows="5" cols="50"></textarea></td>
+                     <td><input type="text" name="ans"></td>
+                     <td><input type="submit" value="Add Question"></td>
+                </form>
+            </tr>
+        </table>
+</center>
+</body>
+</html>

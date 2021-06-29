@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+table, th, td {
+  border: 1px solid black;
+}
+table.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+</head>
+<body>
+<a href="login_successfull">Home</a>
+<center>
+        <table>
+        <tr>
+            <th>id</th>
+            <th>Department</th>
+        </tr>
+            {% for row in rows %}
+             <tr>
+                 <form action="/edit_department" method="POST">
+                    <td><input type="text" name="id" value="{{ row['id'] }}" readonly></td>
+                    <td><input type="text" name="department" value="{{ row['name'] }}"></td>
+                    <td><input type="submit" name="edit" value="Edit"><input type="submit" name="edit" value="Delete"></td>
+                 </form>
+            </tr>
+            {% endfor %}
+            <tr>
+                <form action="/add_department" method="POST">
+                    <td><input type="text" name="id"></td>
+                    <td><input type="text" name="department"></td>
+                    <td><input type="submit" value="Add Department"></td>
+                </form>
+            </tr>
+        </table>
+</center>
+</body>
+</html>

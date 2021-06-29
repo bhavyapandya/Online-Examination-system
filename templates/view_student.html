@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+table, th, td {
+  border: 1px solid black;
+}
+table.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+</head>
+<body>
+<a href="login_successfull">Home</a>
+<center>
+    <form action="/search_student" method="POST" onsubmit="return check()">
+        <input type="text" id="field" name="field"><br>
+        <input type="submit" value="submit"><br>
+         </form>
+        <table>
+        <tr>
+            <th>Enrollment</th>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Password</th>
+        </tr>
+            {% for row in rows %}
+             <tr>
+                 <form action="/edit_student" method="POST">
+            <td> <input type="text" name="eno" value="{{ row['eno'] }}" readonly></td>
+            <td><input type="text" name="name" value="{{ row['name'] }}"></td>
+            <td><input type="text" name="department" value="{{ row['department'] }}"></td>
+            <td><input type="text" name="password" value="{{ row['password'] }}"></td>
+                 <td><input type="submit" value="Edit"></td>
+                 </form>
+            </tr>
+            {% endfor %}
+        </table>
+</center>
+</body>
+<script>
+    function check(){
+        if (document.getElementById("field").value == "") {
+            alert("Enter field");
+            return false;
+        }
+        return true;
+    }
+</script>
+</html>

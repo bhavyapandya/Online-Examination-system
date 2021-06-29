@@ -1,0 +1,66 @@
+{% extends 'base.html' %} 
+ <title>Registartion</title>
+
+{% block head %}<h1><center>Login</center></h1>
+<style>
+input[type=text],input[type=password], select {
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 30%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+</style>
+{% endblock %}
+{% block body %}
+    <form style="margin-left: 80px;" method="post" action="/login_successfull" onsubmit="return check()">
+Enrollment number:<br>
+<input type="text" placeholder="Enrollment number" name="eno" id="eno" maxlength="15"><br>
+Password:<br>
+<input type="password" placeholder="password" name="pass" id="pass1" maxlength="15"><br>
+            <font color="red" size="1px">
+              {% with messages = get_flashed_messages() %}
+         {% if messages %}
+               {% for message in messages %}
+               {{ message }}
+               {% endfor %}
+             <br>
+         {% endif %}
+      {% endwith %}
+            </font>
+<input type="submit" value="Login">
+       <br> <a href="/register"> Register </a>
+    <script>
+    function check() {
+        if (document.getElementById("eno").value == "") {
+            alert("Enter Enrollment number");
+            return false;
+        }
+        else if (document.getElementById("pass1").value == "") {
+            alert("Enter password");
+            return false;
+        }
+        else if (document.getElementById("pass2").value == "") {
+            alert("confirm password");
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+</script>
+{% endblock %}

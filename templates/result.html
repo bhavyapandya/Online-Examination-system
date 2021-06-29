@@ -1,0 +1,14 @@
+<html>
+<head>
+    <h1><center>Result</center></h1>
+</head>
+<body>
+<center>
+    {% if row is none %}
+    you have not gave exam
+    {% endif %}
+    {% if row is not none %}
+    Marks obtain={{row['result']}}/{{row['total']}}
+    {% endif %}
+</center>
+</body>

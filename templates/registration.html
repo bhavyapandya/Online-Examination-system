@@ -1,0 +1,74 @@
+{% extends 'base.html' %} 
+<title><center>Registartion</center>></title>
+    
+{% block head %}<h1>Student Registration</h1>
+<style>
+input[type=text],input[type=password], select {
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 30%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+</style>
+{% endblock %} 
+{% block body %}
+<form style="margin-left: 80px;" method="post" action="/registration_sucessfull" onsubmit="return check()">
+Name:<br>
+<input type="text" name="username" placeholder="username" id="username" maxlength="50"><br>
+Deapartment: <br>
+<select name="department" id="department">
+    {% for row in rows %}
+<option>{{ row['name'] }}</option>
+    {% endfor %}
+</select><br>
+Enrollment number:<br>
+<input type="text" placeholder="Enrollment number" name="eno" id="eno" maxlength="15"><br>
+Password:<br>
+<input type="password" placeholder="password" name="pass" id="pass1" maxlength="15"><br>
+Confirm Password:<br>
+<input type="password" placeholder="confirm password" name="pass" id="pass2" maxlength="15"><br>
+<input type="submit" value="submit">
+</form>
+<script>
+    function check() {
+        if (document.getElementById("username").value == "") {
+            alert("Enter username");
+            return false;
+        }
+        else if (document.getElementById("eno").value == "") {
+            alert("Enter Enrollment number");
+            return false;
+        }
+        else if (document.getElementById("pass1").value == "") {
+            alert("Enter password");
+            return false;
+        }
+        else if (document.getElementById("pass2").value == "") {
+            alert("confirm password");
+            return false;
+        }
+        else if (document.getElementById("pass1").value != document.getElementById("pass2").value) {
+            alert("enter password and confir password do not match");
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,23 @@
+<html>
+<body onload="myVar = setTimeout(myfunction, {{timeout}})">
+<form method="POST" action="/setans" id="myForm">
+    {% set i=namespace(value=1) %}
+    {% for row in rows %}
+    {{row['sr_no']}} ) {{row['question']}}<br>
+    <input type="radio" name="{{i.value}}" value="a" checked>{{row['A']}}
+    <input type="radio" name="{{i.value}}" value="b">{{row['B']}}
+    <input type="radio" name="{{i.value}}" value="c">{{row['C']}}
+    <input type="radio" name="{{i.value}}" value="d">{{row['D']}}
+    {% set i.value=i.value+1 %}<br>
+    {% endfor %}
+    <input type="hidden" value="{{i.value}}" name="length">
+    <input type="hidden" value="{{subject}}" name="subject">
+    <input type="submit" value="submit">
+</form>
+</body>
+<script>
+    function myfunction(){
+        document.getElementById("myForm").submit();
+    }
+</script>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+table, th, td {
+  border: 1px solid black;
+}
+table.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+</head>
+<body>
+<a href="login_successfull">Home</a>
+<center>
+        <table>
+        <tr>
+            <th>id</th>
+            <th>Subject Name</th>
+            <th>Department</th>
+            <th>date</th>
+            <th>Start time</th>
+            <th>End time</th>
+        </tr>
+            {% for row in rows %}
+             <tr>
+                 <form action="/exam_paper" method="POST">
+                     <td><input type="text" name="id" value="{{ row['id'] }}" readonly></td>
+                     <td><input type="text" name="subject_name" value="{{ row['subject_name'] }}" readonly></td>
+                     <td><input type="text" name="department" value="{{ row['department'] }}"></td>
+                     <td><input type="text" name="date" value="{{row['date_of_exam']}}"></td>
+                     <td><input type="time" name="start_time" value="{{row['start_time']}}"></td>
+                     <td><input type="time" name="end_time" value="{{row['end_time']}}"></td>
+                     <td><input type="submit" name="edit" value="Edit"><input type="submit" name="edit" value="Delete">
+                     <input type="submit" name="edit" value="view"></td>
+                 </form>
+            </tr>
+            {% endfor %}
+            <tr>
+                <form action="/add_examination" method="POST">
+                    <td><input type="text" name="id"></td>
+                    <td><input type="text" name="subject_name"></td>
+                    <td><input type="text" name="department"></td>
+                    <td><input type="date" name="date"></td>
+                    <td><input type="time" name="start_time"></td>
+                    <td><input type="time" name="end_time"></td>
+                    <td><input type="submit" value="Add Examination"></td>
+                </form>
+            </tr>
+        </table>
+</center>
+</body>
+</html>

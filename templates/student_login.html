@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+input[type=submit] {
+  width:50px;
+  background-color: #4CAF50;
+  color: white;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+   text-align: center;
+  cursor: pointer;
+}
+form{
+  height: 90px;
+  width: 200px;
+  border-style: groove;
+  border-width: 3px;
+  border-color:black;
+  background-color: #555;
+  float: left;
+}
+</style>
+</head>
+<body>
+<div style='float: right;'><a href="/logout">Logout</a></div>
+<h1>Welcome...... {{name}}</h1><br>
+            {% for row in rows %}
+                 <form action="/view_examinaton_or_result" method="POST" target="_blank">
+                    <center>
+                        subject id :  {{ row['id'] }}<br>
+                        Subject name: {{ row['subject_name'] }}<br>
+                        date:         {{row['date_of_exam']}}<br>
+                        start time:   {{row['start_time']}}<br>
+                        end time:   {{row['end_time']}}<br>
+                     <input type="hidden" value="{{row['id']}}" name="id">
+                     <input type="hidden" value="{{row['subject_name']}}" name="subject">
+                     <input type="submit" name="edit" value="view"><br>
+                    </center>
+                 </form>
+            {% endfor %}
+</body>
+</html>
